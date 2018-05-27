@@ -1,7 +1,8 @@
 package example.staveware.simplemanager.config;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.context.web.SpringBootServletInitializer;
+//import org.springframework.boot.context.web.SpringBootServletInitializer;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 import example.staveware.simplemanager.Application;
 

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Simple Manager</title>
+        <meta charset="UTF-8">
+        <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+        <script src="lib/jquery/dist/jquery.min.js"></script> 
+        <script type="text/javascript">  
+            $(function() {  
+            $("#userid").on("keyup", function() {    
+            $.ajax({     
+            contentType : 'application/json; charset=UTF-8',     
+            url : '/checkDuplication',     
+            data : {      'userid' : $("#userid").val()     }    
+            }).done(function(response, status, jqXHR) {     
+            $("#alertmessage").css("display", "block");     
+            $("#alertmessage").css("color", "black");     
+            $("#alertmessage").html(response + "は利用可能です。");
+            }).fail(function(jqXHR, status, errorThrown) {     
+            $("#alertmessage").css("display", "block");     
+            $("#alertmessage").css("color", "red");     
+            $("#alertmessage").html(jqXHR.responseText + "は既に登録されて います。");    }); 
+            });  }); 
+        </script> 
+    </head>
+    <body>
+        <h1>Simple Manager(MPA版)</h1>  
+        <hr />
+        <form class="form-inline" name="form" action="#"   th:action="@{/registNew}" method="POST">   
+            <input class="form-control" type="text" name="userid" id="userid"    placeholder=" ユーザ ID" /> 
+            <input class="form-control" type="date"    name="birthdate" placeholder=" 生年月日 (yyyy-MM-dd)"    pattern="\d{4}-\d{1,2}-\d{1,2}" /> 
+            <input class="form-control"    type="email" name="email" placeholder=" メールアドレス " /> 
+            <input    class="btn btn-default" type="submit" value=" 登録 " />  </form>  
+            <div role="alert" style="display: none;" id="alertmessage">
+                
+            </div>  <hr />  <a th:href="@{/viewAll}" id="link_gotoResult">現在登録されているユーザ一覧</a>  
+            <hr />  <p align="center">©Toshiba Solutions Corporation 2015 All Rights   Reserved.</p> 
+    </body>
+</html>

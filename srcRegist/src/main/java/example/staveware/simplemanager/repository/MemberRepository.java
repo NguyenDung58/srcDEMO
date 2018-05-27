@@ -6,4 +6,11 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MemberRepository extends JpaRepository<Member, String> {
+
+    public Member findOne(String userid);
+
+    public void save(Member member);
+
+    public void delete(String userid);
+    
 }

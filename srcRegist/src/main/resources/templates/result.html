@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org"> //(1) <head> <meta charset="UTF-8" /> <title>Membership</title> <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" /> </head> <body>  <h1>Simple Manager(MPA版)</h1>  <hr />  <p th:text="${registCompleteMessage}"></p> //(2)  <hr />  <p>現在登録されているユーザ一覧</p> <table class="table table-striped">   <thead>    <tr>     <th>ユーザID</th>     <th>生年月日</th>     <th>メールアドレス</th>    </tr>   </thead> 
+            <tbody>    <tr th:each="entry : ${memberlist}"> //(3)     <td th:text="${entry.userid}" th:id="'key_'+${entry.userid}">No key</td> //(4)     <td th:text="${entry.birthdate}" th:id="'value_'+${entry.birthdate}">No value</td>     <td th:text="${entry.email}" th:id="'value_'+${entry.email}">No value</td>    </tr>   </tbody>  </table>  <hr />  <a th:href="@{/mpa}" id="link_gotoTop">トップ画面へ戻る</a>  <hr />  <p align="center">©Toshiba Solutions Corporation 2015 All Rights Reserved.</p> </body> </html>
